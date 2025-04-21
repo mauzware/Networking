@@ -59,8 +59,8 @@ def poison_target(gateway_ip, gateway_mac, target_ip, target_mac):
 
 	
 interface = "en1"
-target_ip = "TARGETS IP"
-gateway_ip = "TARGETS GATEWAY IP"
+target_ip = "<TARGETS_IP>"
+gateway_ip = "<TARGETS_GATEWAY_IP>"
 packet_count = 1000
 
 conf.iface = interface #set interface
