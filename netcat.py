@@ -16,16 +16,16 @@ def usage():
 	"""CLI Usage"""
 	
 	print("netcat.py")
-	print("Usage: netcat.py -t target -p port")
+	print("Usage: ./netcat.py -t target -p port")
 	print("-l, --listen			-listen on [host]:[port] for incoming connections")
 	print("-e, --execute=file_to_run	-execute the given file upon receiving a connection")
 	print("-c, --command			-initialize a command shell")
 	print("u, --upload=destination		-upon receiving connection upload a file and write to [destination]")
 	print("Examples:")
-	print("netcat.py -t 192.168.1.0 -p 5555 -l -c")
-	print("netcat.py -t 192.168.1.0 -p 5555 -l -u=c:\\target.exe")
-	print("netcat.py -t 192.168.1.0 -p 5555 -l -e=\"cat /etc/passwd"")
-	print("echo 'ABCDEFGHIJ' | netcat.py -t 192.168.1.0 -p 5555")
+	print("./netcat.py -t 192.168.1.0 -p 5555 -l -c")
+	print("./netcat.py -t 192.168.1.0 -p 5555 -l -u=c:\\target.exe")
+	print("./netcat.py -t 192.168.1.0 -p 5555 -l -e=\"cat /etc/passwd"")
+	print("echo 'ABCDEFGHIJ' | netcat.py -t 123.456.7.8 -p 5555")
 	sys.exit(0)
 	
 def main():
@@ -149,7 +149,7 @@ def run_command(command):
 		output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
 		
 	except:
-		output = "Failed to execute command. \r\n"
+		output = "[!] Failed to execute command. \r\n"
 		
 	return output #sends the output back
 	
@@ -185,7 +185,7 @@ def client_handler(client_socket):
 			file_descriptor.close()
 			
 			#acknowledge that it wrote the file out
-			client_socket.send("[!] Successfully saved file to %s\r\n" % upload_destination)
+			client_socket.send("[+] Successfully saved file to %s\r\n" % upload_destination)
 			
 		except:
 			client_socket.send("[-] Failed to save the file to %s\r\n" % upload_destination)
