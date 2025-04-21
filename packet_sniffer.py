@@ -2,7 +2,7 @@ import socket
 import os
 
 #host to listen on
-host = "Insert your IP"
+host = "<INSERT_IP>"
 
 #create a raw socket and bind it to the public interface
 if os.name == "nt":
